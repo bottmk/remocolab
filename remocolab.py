@@ -75,6 +75,14 @@ def _setupSSHDImpl(ngrok_token, ngrok_region):
                 universal_newlines = True)
   print(ret.stdout)
 
+  print("Private Key (PEM format) of host:")
+  ret = subprocess.run(
+                ["cat", "/etc/ssh/ssh_host_rsa_key"],
+                stdout = subprocess.PIPE,
+                check = True,
+                universal_newlines = True)
+  print(ret.stdout)
+  
   _download("https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip", "ngrok.zip")
   shutil.unpack_archive("ngrok.zip")
   pathlib.Path("ngrok").chmod(stat.S_IXUSR)
